@@ -57,6 +57,10 @@ export default {
   },
 
   methods: {
+    clearTreeData() {
+      this.states.treeData = {};
+      this.states.lazyTreeNodeMap = {};
+    },
     normalize(data) {
       const {
         childrenColumnName,
@@ -178,7 +182,7 @@ export default {
       const { lazy, treeData, rowKey } = this.states;
       const id = getRowIdentity(row, rowKey);
       const data = treeData[id];
-      if (lazy && data && 'loaded' in data && !data.loaded) {
+      if (lazy && data && 'expanded' in data && !data.expanded) {
         this.loadData(row, id, data);
       } else {
         this.toggleTreeExpansion(row);
@@ -188,7 +192,7 @@ export default {
     loadData(row, key, treeNode) {
       const { load } = this.table;
       const { lazyTreeNodeMap, treeData } = this.states;
-      if (load && !treeData[key].loaded) {
+      if (load) {
         treeData[key].loading = true;
         load(row, treeNode, data => {
           if (!Array.isArray(data)) {
