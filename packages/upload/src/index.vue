@@ -40,6 +40,9 @@ export default {
         return {};
       }
     },
+    attachInfo: {
+      type: Object
+    },
     data: Object,
     multiple: Boolean,
     name: {
@@ -184,8 +187,7 @@ export default {
       if (file) {
         file.status = 'success';
         file.response = res;
-
-        this.onSuccess(res, file, this.uploadFiles);
+        this.onSuccess(res, file, this.uploadFiles, this.attachInfo);
         this.onChange(file, this.uploadFiles);
       }
     },
