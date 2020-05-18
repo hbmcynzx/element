@@ -48,6 +48,14 @@ export default function upload(option) {
   const formData = new FormData();
 
   if (option.data) {
+    if (typeof option.data === 'string') {
+      try {
+        option.data = JSON.parse(option.data);
+      } catch (e) {
+        console.log('parse json string:' + option.data + 'error,' + e);
+        return;
+      }
+    }
     Object.keys(option.data).forEach(key => {
       formData.append(key, option.data[key]);
     });

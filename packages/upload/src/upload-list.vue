@@ -9,7 +9,7 @@
     name="el-list"
   >
     <li
-      v-for="file in files"
+      v-for="(file, index) in files"
       :class="['el-upload-list__item', 'is-' + file.status, focusing ? 'focusing' : '']"
       :key="file.uid"
       tabindex="0"
@@ -18,7 +18,7 @@
       @blur="focusing = false"
       @click="focusing = false"
     >
-      <slot :file="file">
+      <slot :file="{file: file, files: files, index: index}">
         <img
           class="el-upload-list__item-thumbnail"
           v-if="file.status !== 'uploading' && ['picture-card', 'picture'].indexOf(listType) > -1"

@@ -188,7 +188,7 @@ export default {
         file.status = 'success';
         file.response = res;
         this.onSuccess(res, file, this.uploadFiles, this.attachInfo);
-        this.onChange(file, this.uploadFiles);
+        this.onChange(file, this.uploadFiles, this.attachInfo);
       }
     },
     handleError(err, rawFile) {
