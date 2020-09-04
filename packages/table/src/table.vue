@@ -331,6 +331,8 @@
 
       lazy: Boolean,
 
+      lazyReload: Boolean,
+
       load: Function
     },
 
@@ -612,7 +614,6 @@
         immediate: true,
         handler(value) {
           this.store.commit('setData', value);
-          this.store.clearTreeData();
         }
       },
 
@@ -668,6 +669,7 @@
         // TreeTable 的相关配置
         indent: this.indent,
         lazy: this.lazy,
+        lazyReload: this.lazyReload,
         lazyColumnIdentifier: hasChildren,
         childrenColumnName: children
       });
