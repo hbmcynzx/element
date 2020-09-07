@@ -18,7 +18,7 @@
       @blur="focusing = false"
       @click="focusing = false"
     >
-      <slot :file="{file: file, files: files, index: index}">
+      <slot :file="file" :files="files" :$index="index">
         <img
           class="el-upload-list__item-thumbnail"
           v-if="file.status !== 'uploading' && ['picture-card', 'picture'].indexOf(listType) > -1"

@@ -40,9 +40,6 @@ export default {
         return {};
       }
     },
-    attachInfo: {
-      type: Object
-    },
     data: Object,
     multiple: Boolean,
     name: {
@@ -187,8 +184,9 @@ export default {
       if (file) {
         file.status = 'success';
         file.response = res;
-        this.onSuccess(res, file, this.uploadFiles, this.attachInfo);
-        this.onChange(file, this.uploadFiles, this.attachInfo);
+
+        this.onSuccess(res, file, this.uploadFiles);
+        this.onChange(file, this.uploadFiles);
       }
     },
     handleError(err, rawFile) {
@@ -282,7 +280,7 @@ export default {
             (props) => {
               if (this.$scopedSlots.file) {
                 return this.$scopedSlots.file({
-                  file: props.file
+                  ...props
                 });
               }
             }
